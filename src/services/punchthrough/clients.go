@@ -47,7 +47,7 @@ func (cs *ClientStorage) DeleteClient(clientId int) error {
 	return nil
 }
 
-func (cs *ClientStorage) DeleteAllClients(clientId int) int {
+func (cs *ClientStorage) DeleteAllClients() int {
 	numDeleted := len(cs.clientMap)
 	for key := range cs.clientMap {
 		delete(cs.clientMap, key)
