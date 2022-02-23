@@ -11,11 +11,11 @@ func TestNewClientStorage(t *testing.T) {
 		t.Fatal("Failed to create client storage")
 	}
 
-	if len(storage.clientMap) > 0 {
+	if len(storage.ClientMap) > 0 {
 		t.Fatal("Newly allocated client storage is not empty")
 	}
 
-	if storage.nextId > 0 {
+	if storage.NextId > 0 {
 		t.Fatal("Newly allocated client storage has non-zero next ID")
 	}
 }
@@ -58,7 +58,7 @@ func TestCreateAndGetSingleClient(t *testing.T) {
 		t.Fatal("Failed to get newly created client")
 	}
 
-	if client.id != clientId {
+	if client.Id != clientId {
 		t.Fatal("Retrieved client with mismatched client ID")
 	}
 }
@@ -107,9 +107,9 @@ func TestGetAllClients(t *testing.T) {
 	}
 
 	for i := 0; i < NumToCreate; i++ {
-		expectedClientName := fmt.Sprintf("test_client_%d", clients[i].id)
-		if clients[i].name != expectedClientName {
-			t.Fatalf("Unexpected client: %s != %s", clients[i].name, expectedClientName)
+		expectedClientName := fmt.Sprintf("test_client_%d", clients[i].Id)
+		if clients[i].Name != expectedClientName {
+			t.Fatalf("Unexpected client: %s != %s", clients[i].Name, expectedClientName)
 		}
 	}
 }
