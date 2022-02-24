@@ -35,13 +35,13 @@ func (ss *SessionStorage) CreateSession() int {
 	return sessionId
 }
 
-func (ss *SessionStorage) GetSession(sessionId int) (*Session, error) {
+func (ss *SessionStorage) GetSession(sessionId int) (Session, error) {
 	session, ok := ss.sessionMap[sessionId]
 	if !ok {
-		return nil, errors.New(fmt.Sprintf("Invalid session ID: %d", sessionId))
+		return Session{}, errors.New(fmt.Sprintf("Invalid session ID: %d", sessionId))
 	}
 
-	return &session, nil
+	return session, nil
 }
 
 func (ss *SessionStorage) AddClientToSession(sessionId int, clientToAdd clients.Client) error {

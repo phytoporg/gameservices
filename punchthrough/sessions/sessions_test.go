@@ -19,4 +19,26 @@ func TestNewSessionStorage(t *testing.T) {
 	}
 }
 
-// TODO: All of the other test
+func TestCreateSession(t *testing.T) {
+	storage := New()
+	sessionId := storage.CreateSession()
+	if sessionId != 0 {
+		t.Fatal("Newly allocated client session has non-zero ID")
+	}
+}
+
+func TestGetSession(t *testing.T) {
+	storage := New()
+	sessionId := storage.CreateSession()
+
+	session, err := storage.GetSession(sessionId)
+	if err != nil {
+		t.Fatal("Could not retrieve newly created session by ID")
+	}
+
+	if session.id != sessionId {
+		t.Fatal("Could not retrieve newly created session by ID")
+	}
+}
+
+// TODO: More tests
