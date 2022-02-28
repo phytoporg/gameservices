@@ -4,6 +4,7 @@ package clients
 import (
 	"errors"
 	"fmt"
+	"net"
 )
 
 type ClientStorage struct {
@@ -13,20 +14,21 @@ type ClientStorage struct {
 }
 
 type Client struct {
-	Id   int
-	Name string
+	Id      int
+	Name    string
+	Address net.Addr
 }
 
 func New() *ClientStorage {
 	return &ClientStorage{ClientMap: make(map[int]Client), NextId: 0}
 }
 
-func (cs *ClientStorage) CreateClient(clientName string) int {
+func (cs *ClientStorage) CreateClient(clientName string, addr net.Addr) int {
 	// TODO: Should this fail if there's a name collision?
 	clientId := cs.NextId
 	cs.NextId++
 
-	cs.ClientMap[clientId] = Client{Id: clientId, Name: clientName}
+	cs.ClientMap[clientId] = Client{Id: clientId, Name: clientName, Address: addr}
 	return clientId
 }
 
