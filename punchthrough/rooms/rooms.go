@@ -57,7 +57,7 @@ func (rs *RoomStorage) AddClientToRoom(clientId int, roomId int) error {
 
 	for id := range room.ClientIdsInRoom {
 		if id == clientId {
-			return errors.New(fmt.Sprintf("Client is already in room %d", clientId))
+			return errors.New(fmt.Sprintf("Client %d is already in room %d", clientId, roomId))
 		}
 	}
 
